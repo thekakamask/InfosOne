@@ -7,10 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.PluralsRes;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
 
 import java.util.Date;
 import java.util.List;
@@ -18,10 +15,15 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private List<Article> mesArticles;
+    private InterIntent mInterIntent;
+    private Article mArticle;
 
-    public Adapter(List<Article> mesArticles) {
+
+    public Adapter(List<Article> mesArticles, InterIntent interIntent) {
         this.mesArticles = mesArticles;
+        this.mInterIntent = interIntent;
     }
+
 
     @NonNull
     @Override
@@ -52,11 +54,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+
         private TextView mSource;
         private TextView mTitle;
         private ImageView mImageView;
         private TextView mAuthor;
         private TextView mDate;
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -71,10 +75,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         private void setData(int resource, String sourceText, String titleText, String authorText, Date dateText ) {
             mImageView.setImageResource(resource);
+            mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        mInterIntent.GotoSecondActivity(mArticle);
+                }
+            });
             mSource.setText(sourceText);
             mTitle.setText(titleText);
             mAuthor.setText(authorText);
-            mDate.setText((CharSequence) dateText);
+            //mDate.setText(dateText);
+            mDate.setText("21/10/1993");
         }
     }
 

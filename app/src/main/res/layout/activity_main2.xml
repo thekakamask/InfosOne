@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+    <TextView
+        android:id="@+id/titre2"
+        android:layout_width="187dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="220dp"
+        android:text="TITRE"
+        app:layout_constraintBottom_toTopOf="@+id/contenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bouton_retour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenu" />
+
+    <TextView
+        android:id="@+id/contenu"
+        android:layout_width="388dp"
+        android:layout_height="427dp"
+        android:layout_marginBottom="60dp"
+        android:text="CONTENU ARTICLE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/auteur2"
+        android:layout_width="118dp"
+        android:layout_height="58dp"
+        android:text="AUTEURS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenu" />
+
+    <TextView
+        android:id="@+id/source2"
+        android:layout_width="128dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:text="SOURCE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenu" />
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="388dp"
+        android:layout_height="295dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="101dp"
+        android:layout_height="19dp"
+        android:layout_marginBottom="224dp"
+        android:text="DATE"
+        app:layout_constraintBottom_toTopOf="@+id/contenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

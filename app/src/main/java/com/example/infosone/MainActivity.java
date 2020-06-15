@@ -4,15 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements InterIntent {
 
     private RecyclerView recyclerView;
+    private static final int GAME_ACTIVITY_REQUEST_CODE=42;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         mesArticles.add(new Article(R.drawable.tete,"Le président de Deutsche Bank renonce à un 3e mandat","REUTERS", "Le président du conseil de surveillance de Deutsche Bank, Paul Achleitner, a annoncé mercredi son intention de quitter ses fonctions en 2022, renonçant à solliciter un troisième mandat de cinq ans alors que la première banque allemande est en pleine restructuration. Il a profité de l’assemblée générale annuelle des actionnaires du groupe pour officialiser sa décision en déclarant : “Je ne solliciterai pas une réélection. Après dix ans à ce poste, cela suffira.” Paul Achleitner, ancien associé de Goldman Sachs et ex-directeur financier de l’assureur Allianz, a été ces dernières années critiqués par des actionnaires qui lui reprochaient pêle-mêle les revirements stratégiques de la banque, les bouleversements au sein de l’équipe dirigeante et la chute de 80% en dix ans du cours de Bourse. Après cinq ans de pertes, Deutsche Bank est actuellement engagée dans une restructuration majeure qui prévoit la réduction de ses activités de banque d’investissement et la suppression de 18.000 postes dans le monde. La société de conseil aux investisseurs Glass Lewis avait recommandé aux actionnaires de voter contre le quitus au président du conseil lors de l’AG. Le président du directoire, Christian Sewing, a réfuté lors des débats l’idée que Deutsche Bank pourrait avoir besoin d’une aide publique pour survivre à la crise du coronavirus et il a estimé que le groupe devait améliorer sa rentabilité avant de pouvoir prétendre jouer un rôle dans la consolidation du secteur en Europe.", "Reuters Staff", new Date(22/05/2020)));
         mesArticles.add(new Article(R.drawable.altice,"La logique de la fusion FCA-PSA plus forte que jamais, déclare Elkann","REUTERS", "La logique qui sous-tend le projet de fusion entre Fiat Chrysler Automobiles (FCA) et PSA est plus forte que jamais, a déclaré mercredi John Elkann, le président du constructeur italo-américain, alors que la pandémie de nouveau coronavirus a aggravé les difficultés du secteur automobile. S’exprimant lors de l’assemblée générale des actionnaires d’Exor, la holding de la famille Agnelli, John Elkann, petit-fils de Gianni Agnelli et PDG de la société, a affirmé que les travaux préparatoires à cette fusion entre égaux se déroulaient dans les temps et comme prévu. La logique stratégique de cette association des deux entreprises et de tous leurs employés est plus forte que jamais, a dit John Elkann, qui devrait prendre la présidence du futur groupe fusionné. FCA est critiqué en Italie en raison du dividende extraordinaire de 5,5 milliards d’euros qu’il est censé verser à ses actionnaires dans le cadre de sa fusion avec PSA, alors qu’il négocie dans le même temps avec le gouvernement italien un prêt de 6,3 milliards d’euros garanti par l’Etat face à la crise liée au coronavirus. Ce dividende, qui doit être distribué par la holding Fiat Chrysler Automobiles NV aux Pays-Bas, est un élément central de la valorisation de l’opération avec PSA et certains analystes pensent qu’une modification des modalités financières de l’accord pourrait entraîner l’échec de la fusion. Le sous-secrétaire italien au Trésor Pier Paolo Baretta a déclaré mercredi à Reuters que Rome envisageait de prolonger l’interdiction du versement d’un dividende pour les entreprises bénéficiant des garanties de l’Etat. Cette interdiction, pour l’instant en vigueur jusqu’à fin 2020, pourrait s’appliquer aux 12 mois suivant l’obtention de la garantie de l’Etat, a-t-il dit. FCA a refusé de s’exprimer sur ce point. Un tel allongement compliquerait la tâche du groupe alors que le versement du dividende exceptionnel doit intervenir juste avant la finalisation de la fusion avec PSA, prévue au premier trimestre 2021.", "Reuters Staff", new Date(22/05/2020)));
 
-        Adapter adapter = new Adapter(mesArticles);
+        Adapter adapter = new Adapter(mesArticles, this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -43,5 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+    
+
+    @Override
+    public void GotoSecondActivity(Article mArticle) {
+        Intent mainActivity2 = new Intent(MainActivity.this, MainActivity2.class);
+        startActivityForResult(mainActivity2, GAME_ACTIVITY_REQUEST_CODE);
     }
 }
