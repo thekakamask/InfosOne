@@ -3,6 +3,8 @@ package com.example.infosone;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +18,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private List<Article> mesArticles;
     private InterIntent mInterIntent;
-    private Article mArticle;
+    private InterShare mInterShare;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
 
     public Adapter(List<Article> mesArticles, InterIntent interIntent) {
@@ -31,7 +42,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
-
     }
 
     @Override
@@ -40,8 +50,28 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         String title = mesArticles.get(position).getTitle();
         String origins = mesArticles.get(position).getOrigins();
         String author = mesArticles.get(position).getAuthor();
-        Date date = mesArticles.get(position).getDate();
-        holder.setData(resource, origins, title, author, date);
+        String date = mesArticles.get(position).getDate();
+        final Article mArticle = mesArticles.get(position);
+        holder.mImageView.setImageResource(resource);
+        holder.mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mInterIntent.gotoSecondActivity(mArticle);
+            }
+        });
+        holder.mSource.setText(origins);
+        holder.mTitle.setText(title);
+        holder.mAuthor.setText(author);
+        holder.mDate.setText(date);
+        /*holder.mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mInterShare.gotoShare(mArticle);
+
+
+            }
+        });*/
+        //holder.setData(resource, origins, title, author, date);
 
 
     }
@@ -71,23 +101,33 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             mImageView = itemView.findViewById(R.id.image_View);
             mAuthor = itemView.findViewById(R.id.text_View3);
             mDate = itemView.findViewById(R.id.text_View4);
+
+
         }
 
-        private void setData(int resource, String sourceText, String titleText, String authorText, Date dateText ) {
+
+
+       /* private void setData(int resource, String sourceText, String titleText, String authorText, String dateText) {
             mImageView.setImageResource(resource);
             mImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        mInterIntent.GotoSecondActivity(mArticle);
+                 //   mInterIntent.gotoSecondActivity(mArticle);
                 }
             });
             mSource.setText(sourceText);
             mTitle.setText(titleText);
             mAuthor.setText(authorText);
-            //mDate.setText(dateText);
-            mDate.setText("21/10/1993");
+            mDate.setText(dateText);
+            mButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //mInterShare.gotoShare(mArticle);
+
+
+                }
+            });*/
         }
-    }
 
 }
 
